@@ -45,7 +45,9 @@ def start(asRoot = True):
     thisFile = thisFile.replace(".pyc", ".py")
     procroot = subprocess.Popen(["pkexec", thisFile.replace("__init__", "procroot"), ptoc_filename, ctop_filename])
   else:
-    procroot = subprocess.Popen([os.path.abspath(__file__).replace("__init__", "procroot"), ptoc_filename, ctop_filename])
+    thisFile = __file__
+    thisFile = thisFile.replace(".pyc", ".py")
+    procroot = subprocess.Popen([thisFile.replace("__init__", "procroot"), ptoc_filename, ctop_filename])
   
   try:  
     ptoc_file = open(ptoc_filename, "w")
