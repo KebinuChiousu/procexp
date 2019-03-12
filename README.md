@@ -55,3 +55,17 @@ unzip master.zip
 cd procexp-master
 ./procexp.py
 ```
+
+### It is possible to run tcpdump as a non-root user. if you feel comfortable you can run the following:
+
+```
+sudo groupadd pcap
+sudo usermod -a -G pcap $USER
+
+sudo chgrp pcap /usr/sbin/tcpdump
+sudo chmod 750 /usr/sbin/tcpdump
+
+sudo setcap cap_net_raw,cap_net_admin=eip /usr/sbin/tcpdump
+```
+
+This will allow all users in the pcap group to control tcpdump as a non-root user.
